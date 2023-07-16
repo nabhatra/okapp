@@ -4,8 +4,10 @@ import '../constants/constant.dart';
 
 class CustomGradientButton extends StatefulWidget {
   final void Function()? onPressed;
+  final String title;
 
-  const CustomGradientButton({Key? key, required this.onPressed})
+  const CustomGradientButton(
+      {Key? key, required this.onPressed, this.title = "เข้าสู่ระบบ"})
       : super(key: key);
 
   @override
@@ -25,7 +27,7 @@ class _CustomGradientButtonState extends State<CustomGradientButton> {
             gradient: Constant.linearBackgroundColor),
         child: Center(
             child: Text(
-          "เข้าสู่ระบบ",
+          widget.title,
           style: TextStyle(
               color: Colors.white, fontSize: 17, fontWeight: FontWeight.w600),
         )),

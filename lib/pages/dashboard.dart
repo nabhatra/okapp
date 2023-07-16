@@ -41,6 +41,7 @@ Widget _headerDashboard(BuildContext context) {
           child: IconButton(
             icon: Icon(Icons.arrow_back, color: Colors.white),
             onPressed: () {
+              // ใช้สำหรับหน้า register กด confirm แล้วย้อนกลับไปแก้ไม่ได้
               Navigator.popAndPushNamed(context, '/');
             },
           ),

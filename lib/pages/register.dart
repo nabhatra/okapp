@@ -170,35 +170,34 @@ class _RegisterState extends State<Register> {
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Please enter a password agian.';
-                }
-                if (value != userPassword) {
+                } else if (userPassword != value) {
                   return 'Passwords do not match.';
                 }
                 return null;
               },
-              onSaved: (newValue) {
-                confirmPassword = newValue;
-              },
             ),
             Container(height: 10),
 
-            CustomRegisterButton(
+            CustomGradientButton(
               onPressed: () async {
+                _formKey.currentState!.save();
                 if (_formKey.currentState!.validate()) {
-                  _formKey.currentState!.save();
-                  var url = Uri.http('127.0.0.1:3000', '/okapp/login.php');
+                  var url = Uri.http('10.0.2.2:3000', '/okapp/register.php');
 
                   // Await the http post response, then decode the json-formatted response.
                   var response = await http.post(url, body: {
                     "userEmail": userEmail,
                     "userPassword": userPassword,
+                    "userName": userName,
+                    "userLastname": userLastname,
                   });
 
                   if (response.statusCode == 200) {
                     var jsonResponse =
                         jsonDecode(response.body) as Map<String, dynamic>;
                     if (jsonResponse["status"]) {
-                      Navigator.pushNamed(context, "/dashboard");
+                      Navigator.pushNamedAndRemoveUntil(
+                          context, "/dashboard", (route) => false);
                     }
                   } else {
                     print(
