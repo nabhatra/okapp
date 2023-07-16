@@ -17,6 +17,7 @@ class _LoginPageState extends State<LoginPage> {
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   String? userEmail;
   String? userPassword;
+  bool _passwordVisible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +25,6 @@ class _LoginPageState extends State<LoginPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // Container(
-            //     color: Colors.red,
-            //     child: Image.asset("assets/images/Logo.png")),
             _buildHeader(),
             _buildBody(),
             Container(
@@ -83,12 +81,24 @@ class _LoginPageState extends State<LoginPage> {
               height: 20,
             ),
             TextFormField(
-              obscureText: true,
+              obscureText: !_passwordVisible,
               decoration: InputDecoration(
-                  labelText: 'รหัสผ่าน', hintText: "กรุณากรอกรหัสผ่าน"),
+                labelText: 'Password',
+                hintText: "Please enter a password.",
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    _passwordVisible ? Icons.visibility : Icons.visibility_off,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      _passwordVisible = !_passwordVisible;
+                    });
+                  },
+                ),
+              ),
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return "Please input password.";
+                  return "Please enter a password.";
                 }
                 return null;
               },

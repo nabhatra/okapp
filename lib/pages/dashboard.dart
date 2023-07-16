@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:okapp/constants/constant.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -10,6 +11,51 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+// Header
+            _headerDashboard(context),
+
+            //body
+            //footer
+          ],
+        ),
+      ),
+    );
   }
+}
+//header
+
+// Header
+Widget _headerDashboard(BuildContext context) {
+  return Container(
+    height: 140,
+    decoration: BoxDecoration(gradient: Constant.linearBackgroundColor),
+    child: Stack(
+      children: [
+        Positioned(
+          left: 16,
+          top: 40,
+          child: IconButton(
+            icon: Icon(Icons.arrow_back, color: Colors.white),
+            onPressed: () {
+              Navigator.popAndPushNamed(context, '/');
+            },
+          ),
+        ),
+        Center(
+          child: Text(
+            'Dashboard',
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
 }
