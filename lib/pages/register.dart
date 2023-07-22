@@ -3,10 +3,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:okapp/components/custom_button_register.dart';
 import 'package:okapp/components/custom_gradient_button.dart';
 import 'package:okapp/constants/constant.dart';
-import 'package:flutter/widgets.dart';
 
 class Register extends StatefulWidget {
   const Register({Key? key}) : super(key: key);

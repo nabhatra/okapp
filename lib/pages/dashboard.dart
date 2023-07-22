@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:okapp/constants/constant.dart';
+import 'package:okapp/pages/menu_page.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -8,55 +8,73 @@ class Dashboard extends StatefulWidget {
   _DashboardState createState() => _DashboardState();
 }
 
-class _DashboardState extends State<Dashboard> {
+class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    _tabController = TabController(length: 4, vsync: this);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-// Header
-            _headerDashboard(context),
-
-            //body
-            //footer
-          ],
-        ),
-      ),
-    );
-  }
-}
-//header
-
-// Header
-Widget _headerDashboard(BuildContext context) {
-  return Container(
-    height: 140,
-    decoration: BoxDecoration(gradient: Constant.linearBackgroundColor),
-    child: Stack(
+        body: Column(
       children: [
-        Positioned(
-          left: 16,
-          top: 40,
-          child: IconButton(
-            icon: Icon(Icons.arrow_back, color: Colors.white),
-            onPressed: () {
-              // ใช้สำหรับหน้า register กด confirm แล้วย้อนกลับไปแก้ไม่ได้
-              Navigator.popAndPushNamed(context, '/');
-            },
+        Expanded(
+          child: TabBarView(
+            controller: _tabController,
+            children: [
+              //import menu_page.dart
+              MenuPage(),
+              Container(
+                color: Colors.amber,
+              ),
+              Container(
+                color: Colors.blue,
+              ),
+              Container(
+                color: Colors.red,
+              ),
+            ],
           ),
         ),
-        Center(
-          child: Text(
-            'Dashboard',
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
+        TabBar(
+          padding: EdgeInsets.only(
+            left: 10,
+            bottom: 20,
+            right: 10,
+          ),
+          controller: _tabController,
+          tabs: [
+            Tab(
+              icon: Icon(
+                Icons.home,
+              ),
+              child: Text("Home"),
             ),
-          ),
-        ),
+            Tab(
+              icon: Icon(
+                Icons.production_quantity_limits_sharp,
+              ),
+              child: Text("Product"),
+            ),
+            Tab(
+              icon: Icon(
+                Icons.history,
+              ),
+              child: Text("History"),
+            ),
+            Tab(
+              icon: Icon(
+                Icons.portrait_rounded,
+              ),
+              child: Text("Profile"),
+            ),
+          ],
+        )
       ],
-    ),
-  );
+    ));
+  }
 }

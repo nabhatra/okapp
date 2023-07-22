@@ -163,13 +163,6 @@ class _LoginPageState extends State<LoginPage> {
   Widget _buildFooter() {
     return Column(
       children: [
-        // Row(
-        //   mainAxisAlignment: MainAxisAlignment.center,
-        //   children: [
-        //     Text("ยังไม่มีบัญชี? "),
-        //     Text("สมัครสมาชิก"),
-        //   ],
-        // ),
         RichText(
             text: TextSpan(
                 style: TextStyle(
