@@ -17,7 +17,7 @@ class _MenuPageState extends State<MenuPage> {
           children: [
             _buildHeader(),
             _buildFavoriteComponent(),
-            _buildGridMenu,
+            _buildCategoriesComponent(),
           ],
         ),
       ),
@@ -109,7 +109,7 @@ class _MenuPageState extends State<MenuPage> {
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 10, bottom: 20, top: 10),
+            padding: const EdgeInsets.only(left: 20, bottom: 20, top: 10),
             child: Row(
               children: [
                 Column(
@@ -131,17 +131,13 @@ class _MenuPageState extends State<MenuPage> {
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
+              // mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Container(width: 150, height: 150, color: Colors.red),
-                Container(width: 150, height: 150, color: Colors.blue),
-                Container(width: 150, height: 150, color: Colors.green),
-                Container(width: 150, height: 150, color: Colors.black),
-                Container(width: 150, height: 150, color: Colors.pink),
-                Container(width: 150, height: 150, color: Colors.yellow),
-                Container(width: 150, height: 150, color: Colors.lightGreen),
-                Container(width: 150, height: 150, color: Colors.grey),
-                Container(width: 150, height: 150, color: Colors.deepOrange),
-                Container(width: 150, height: 150, color: Colors.purple),
+                _createCard("Cardiac", Icons.heat_pump_rounded, Colors.blue),
+                _createCard("Brain", Icons.face, Colors.red),
+                _createCard(
+                    "Pediatics", Icons.heart_broken_rounded, Colors.purple),
+                _createCard("Cardiac", Icons.heat_pump_rounded, Colors.green),
               ],
             ),
           )
@@ -169,5 +165,66 @@ class _MenuPageState extends State<MenuPage> {
     );
   }
 
-  //Grid
+  Widget _createCard(String title, IconData icon, Color color,
+      {double width = 85, double height = 85}) {
+    return Container(
+      margin: const EdgeInsets.only(right: 10),
+      width: width,
+      height: height,
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            icon,
+            size: 36,
+            color: Colors.white,
+          ),
+          Text(
+            title,
+            style: TextStyle(
+              fontSize: 12,
+              color: Colors.white,
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget _buildCategoriesComponent() {
+    return Container(
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Column(
+          children: [
+            //แถวที่ 1
+            Text('หมวดหมู่ยอดนิยม'),
+            //แถวที่ 2
+            SizedBox(
+              height: 10,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(width: 150, height: 160, color: Colors.orange),
+                Container(width: 150, height: 160, color: Colors.blueAccent),
+              ],
+            ),
+            //แถวที่ 3
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(width: 150, height: 160, color: Colors.green),
+                Container(width: 150, height: 160, color: Colors.pink),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
