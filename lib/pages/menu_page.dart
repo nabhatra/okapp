@@ -38,44 +38,53 @@ class _MenuPageState extends State<MenuPage> {
             bottomRight: Radius.circular(20),
           )),
       child: SafeArea(
-        child: Column(
-          children: [
-            Row(
-              children: [
-                CircleAvatar(),
-                Column(
-                  children: [
-                    Text(
-                      'Hello Patto !',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    Text(
-                      "What's on your mind",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ],
-                ),
-                Expanded(
-                  child: Container(),
-                ),
-                IconButton(
-                  onPressed: () {},
-                  icon: Icon(Icons.notifications),
-                ),
-              ],
-            ),
-            TextField(
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.white,
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 4.h),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  CircleAvatar(
+                    radius: 15.sp,
+                  ),
+                  Container(width: 2.w),
+                  Column(
+                    children: [
+                      Text(
+                        'Hello Patto !',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      Text(
+                        "What's on your mind",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ],
+                  ),
+                  Expanded(
+                    child: Container(),
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.notifications),
+                  ),
+                ],
               ),
-            ),
-            Container(
-              height: 2.h,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: Container(
+              Expanded(child: Container()),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  width: 100.w,
+                  height: 8.h,
+                  child: TextField(
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+              Expanded(child: Container()),
+              Container(
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -98,8 +107,8 @@ class _MenuPageState extends State<MenuPage> {
                           "Coupon", Icons.airplane_ticket, () => null),
                     ]),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -169,14 +178,14 @@ class _MenuPageState extends State<MenuPage> {
     );
   }
 
-  Widget _createCard(String title, IconData icon, Color color,
+  Widget _createCard(String title, IconData icon, MaterialColor color,
       {double width = 85, double height = 85}) {
     return Container(
       margin: const EdgeInsets.only(right: 10),
       width: width,
       height: height,
       decoration: BoxDecoration(
-        color: color,
+        color: color.shade100,
         borderRadius: BorderRadius.circular(10),
       ),
       child: Column(
@@ -185,13 +194,13 @@ class _MenuPageState extends State<MenuPage> {
           Icon(
             icon,
             size: 36,
-            color: Colors.white,
+            color: color.shade900,
           ),
           Text(
             title,
             style: TextStyle(
               fontSize: 12,
-              color: Colors.white,
+              color: color.shade900,
             ),
           )
         ],
@@ -212,7 +221,7 @@ class _MenuPageState extends State<MenuPage> {
               style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
             ),
             //แถวที่ 2
-            SizedBox(
+            Container(
               height: 10,
             ),
             Row(
@@ -226,7 +235,7 @@ class _MenuPageState extends State<MenuPage> {
               ],
             ),
             Container(
-              height: 20,
+              height: 10,
             ),
             //แถวที่ 3
             Row(
