@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:okapp/constants/constant.dart';
+import 'package:sizer/sizer.dart';
 
 class MenuPage extends StatefulWidget {
   const MenuPage({Key? key}) : super(key: key);
@@ -26,9 +27,10 @@ class _MenuPageState extends State<MenuPage> {
 
   Widget _buildHeader() {
     return Container(
-      // width: double.infinity,
-      width: MediaQuery.of(context).size.width,
-      height: 300,
+      width: 100.w,
+      height: 32.h,
+      // width: MediaQuery.of(context).size.width,
+      // height: 300,
       decoration: BoxDecoration(
           gradient: Constant.linearBackgroundColor,
           borderRadius: BorderRadius.only(
@@ -69,7 +71,7 @@ class _MenuPageState extends State<MenuPage> {
               ),
             ),
             Container(
-              height: 20,
+              height: 2.h,
             ),
             Padding(
               padding: const EdgeInsets.all(10),
@@ -115,7 +117,9 @@ class _MenuPageState extends State<MenuPage> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('กูรูที่ชื่นชอบ'),
+                    Text('กูรูที่ชื่นชอบ',
+                        style: TextStyle(
+                            fontSize: 14.sp, fontWeight: FontWeight.bold)),
                     SizedBox(height: 10),
                     Text('ค้นหาอย่างรวดเร็ว'),
                   ],
@@ -200,9 +204,13 @@ class _MenuPageState extends State<MenuPage> {
       child: Padding(
         padding: const EdgeInsets.all(12),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             //แถวที่ 1
-            Text('หมวดหมู่ยอดนิยม'),
+            Text(
+              'หมวดหมู่ยอดนิยม',
+              style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
+            ),
             //แถวที่ 2
             SizedBox(
               height: 10,
@@ -210,16 +218,27 @@ class _MenuPageState extends State<MenuPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(width: 150, height: 160, color: Colors.orange),
-                Container(width: 150, height: 160, color: Colors.blueAccent),
+                Expanded(child: Container(height: 160, color: Colors.green)),
+                Container(
+                  width: 20,
+                ),
+                Expanded(child: Container(height: 160, color: Colors.pink)),
               ],
+            ),
+            Container(
+              height: 20,
             ),
             //แถวที่ 3
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(width: 150, height: 160, color: Colors.green),
-                Container(width: 150, height: 160, color: Colors.pink),
+                Expanded(
+                    child: Container(height: 160, color: Colors.blueAccent)),
+                Container(
+                  width: 20,
+                ),
+                Expanded(
+                    child: Container(height: 160, color: Colors.orangeAccent)),
               ],
             ),
           ],
